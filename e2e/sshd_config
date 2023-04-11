@@ -2,7 +2,7 @@ X11Forwarding yes
 PasswordAuthentication yes
 # PubkeyAuthentication yes
 #ChallengeResponseAuthentication no
-AuthorizedKeysFile /root/.ssh/authorized_keys /etc/ssh/authorized_keys
+#AuthorizedKeysFile /root/.ssh/authorized_keys /etc/ssh/authorized_keys
 SyslogFacility AUTH
 LogLevel DEBUG
-PermitRootLogin 	yes
+#PermitRootLogin 	yes
