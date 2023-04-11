@@ -40,5 +40,19 @@ ADD https://github.com/krallin/tini/releases/download/${tini_version}/tini-stati
 RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
-RUN apk add -U xvfb-run mesa-dri-gallium
-CMD ["xvfb-run", "-s", "-screen 0 800x600x24", "./obs"]
+RUN apk add -U xvfb-run mesa-dri-gallium nano
+# CMD ["xvfb-run", "-s", "-screen 0 800x600x24", "./obs"]
+
+# install openssh and start sshd service
+# Start and enable SSH
+
+RUN apk add -U  openssh \
+     && echo "root:Docker" | chpasswd \
+     && cd /etc/ssh/ \
+     && ssh-keygen -A
+
+COPY sshd_config /etc/ssh/
+# /opt/obs/bin/64bit/ xvfb-run -s "-screen 0 800x600x24" ./obs 
+# ssh -X root@127.0.0.1
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
