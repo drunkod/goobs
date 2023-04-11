@@ -14,6 +14,7 @@ RUN cmake -DUNIX_STRUCTURE=0 -DCMAKE_INSTALL_PREFIX=/opt/obs -DBUILD_BROWSER=OFF
 RUN make -j4
 RUN make install
 
+RUN apk add -U websocket++ websocketd asio-dev
 # install obs-websocket (https://github.com/Palakis/obs-websocket/issues/586#issuecomment-769836454)
 WORKDIR /work
 RUN git clone --recursive https://github.com/Palakis/obs-websocket.git
